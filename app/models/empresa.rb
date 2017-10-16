@@ -6,7 +6,8 @@ class Empresa < ApplicationRecord
 	end
 
 	def tipo
-		"transporte"
+		self.kind.description
+
 	end
 
 	def kind_description

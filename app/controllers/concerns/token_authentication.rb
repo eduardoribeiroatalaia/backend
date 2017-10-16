@@ -25,15 +25,15 @@ module TokenAuthentication
 
 	def sign_out
 		current_user.sign_out(request.headers["client"])
-		@current_resource = nil		
+		@current_resource = nil
 	end
 
 	def sign_in!(auth, password)
-		@current_resource = resource_class.sign_in!(auth, password)		
+		@current_resource = resource_class.sign_in!(auth, password)
 	end
 
 	def sign_in(auth, password)
-		@current_resource = resource_class.sign_in(auth, password)		
+		@current_resource = resource_class.sign_in(auth, password)
 	end
 
 	def reset_password(email)

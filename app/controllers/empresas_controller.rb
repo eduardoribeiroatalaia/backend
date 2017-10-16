@@ -3,14 +3,30 @@ class EmpresasController < ApplicationController
 
   # GET /empresas
   def index
-    @empresas = Empresa.all
+    if !User.authenticate_by_token(request.headers["uid"], request.headers["client"], request.headers["access-token"]).nil?
+      @empresas = Empresa.joins(:kind)
 
-    render json: @empresas
+      if !params[:name].nil?
+        @empresas = @empresas.where(name: params[:name])
+      end
+
+      if !params[:tipo].nil?
+        @empresas = @empresas.where(:kinds=>{:description=> params[:tipo]})
+      end
+
+      render json: @empresas
+    else
+      render json: {errors: "Usuario nao logado"},status: :unprocessable_entity
+    end
   end
 
   # GET /empresas/1
   def show
-    render json: @empresa, include: :kind
+    if !User.authenticate_by_token(request.headers["uid"], request.headers["client"], request.headers["access-token"]).nil?
+      render json: @empresa, include: :kind
+    else
+      render json: {errors: "Usuario nao logado"},status: :unprocessable_entity
+    end
   end
 
   # POST /empresas
@@ -37,6 +53,7 @@ class EmpresasController < ApplicationController
   def destroy
     @empresa.destroy
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
