@@ -4,6 +4,11 @@ class Empresa < ApplicationRecord
 	def detalhamento
 		"empresas de medio e grande porte"
 	end
+
+	def tipo
+		"transporte"
+	end
+
 	def kind_description
 		self.kind_description
 	end
