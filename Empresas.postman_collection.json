@@ -1,0 +1,139 @@
+{
+	"info": {
+		"name": "Empresas",
+		"_postman_id": "4cda3f39-d91e-26a4-fee2-6be114fce0e5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"auth\": \"testeapple@ioasys.com.br\",\n\t\"password\": \"12341234\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000//api/v1/authentication/sessions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"",
+								"api",
+								"v1",
+								"authentication",
+								"sessions"
+							]
+						},
+						"description": "auth: email\npassword: password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresas",
+			"description": "",
+			"item": [
+				{
+					"name": "Lista de empresas c/ filtro",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"testeapple@ioasys.com.br\"}"
+						},
+						"url": {
+							"raw": "localhost:3000/empresas?name=Smitham-Swaniawski&tipo=PublicaOrg",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"empresas"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Smitham-Swaniawski",
+									"equals": true
+								},
+								{
+									"key": "tipo",
+									"value": "PublicaOrg",
+									"equals": true
+								}
+							]
+						},
+						"description": "Filtros: {name, tipo}"
+					},
+					"response": []
+				},
+				{
+					"name": "Detalhe da empresa",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "uid",
+								"value": "testeapple@ioasys.com.br"
+							},
+							{
+								"key": "access-token",
+								"value": "uG8fRxtMFKULjSMT3aKQ"
+							},
+							{
+								"key": "client",
+								"value": "8uWyZFvDtMxm7eLezfsi"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"testeapple@ioasys.com.br\"}"
+						},
+						"url": {
+							"raw": "localhost:3000/empresas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"empresas",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
