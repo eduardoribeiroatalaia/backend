@@ -7,7 +7,6 @@ class Empresa < ApplicationRecord
 
 	def tipo
 		self.kind.description
-
 	end
 
 	def kind_description
